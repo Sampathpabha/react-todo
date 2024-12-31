@@ -1,0 +1,153 @@
+body{
+  background-image: url(https://static.vecteezy.com/system/resources/previews/009/362/398/original/blue-dynamic-shape-abstract-background-suitable-for-web-and-mobile-app-backgrounds-eps-10-vector.jpg);
+  background-size: cover;
+  
+}
+button {
+  background-color: #FF6F61;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #E65B54;
+}
+.add-task-container button{
+  background-color: green;
+  height: 5vh;
+  width: 6vw;
+  font-weight: bold;
+}
+.add-task-container button:hover{
+  background-color: white;
+  color: green;
+  box-shadow: 1px 1px 4px 4px green;
+  
+}
+
+.todo-app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-left: 25vw;
+}
+h1 {
+  font-size: 2rem;
+  color: #333;
+}
+.addnew{
+  margin-top: 3vw;
+  background-color: #FFEDE1;
+  color: #3E3E3E;
+  border: 1px solid #EAE6F7;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 22vw;
+  
+}
+.addnew:focus{
+  box-shadow: 1px 1px 10px 5px #2EC4B6;
+  outline: 2px solid #2EC4B6;
+  background-color: #FFFFFF;
+}
+.radio{
+  color: black;
+  font-weight: bold;
+  margin-left: 2.5vw;
+}
+.filter-container {
+  margin-bottom: 20px;
+  position: fixed;
+  right: 8vw;
+  top: 5vh;
+}
+
+.filter-container label {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+}
+
+.filter-container select {
+  background-color: #EAE6F7;
+  color: #3E3E3E;
+  border: 1px solid #2EC4B6;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  border-radius: 0.4vw;
+}
+.filter-container select:focus{
+  box-shadow: 1px 1px 4px 4px lightblue;
+}
+
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  box-shadow: 1px 1px 20px 10px lightskyblue;
+  margin-top: 3vw;
+}
+
+.todo-list li {
+  padding: 10px 15px;
+  margin: 5px auto;
+  width: 45vw;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.todo-list li:hover{
+  transform: scale(1.03);
+  transition-duration: 0.5s;
+  
+}
+
+.todo-list li.completed {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.todo-list li.pending {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.todo-list button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+progress{
+  width: 30vw;
+}
+.pagination-buttons button{
+  width: 6vw;
+  height: 5vh;
+  margin-left: 2vw;
+  background-color: black;
+}
+.pagination-buttons button:hover{
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 4px 4px black;
+}
+
+
