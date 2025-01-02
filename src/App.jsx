@@ -9,7 +9,6 @@ function App() {
   const [fIndex, setFIndex] = useState(0);
   const [lIndex, setLIndex] = useState(10);
   const [newTodo, setNewTodo] = useState("");
-  const [newc, setNewc] = useState("");
   const [progressValue, setProgressValue] = useState(0);
 
   // Fetch todos on component mount
@@ -39,27 +38,34 @@ function App() {
       setProgressValue(0);
     }
   }, [fIndex, lIndex, filter, todos]);
-//Deleting todo
+
+  // Deleting todo
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => {
-      if( todo.id !== id){
-        return todo;
-      }
-    }
-    ));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
-//Adding new todo
+
+  // Adding new todo
   const addTodo = () => {
     if (newTodo.trim() === "") return;
     const newVal = {
       id: uuidv4(),
       title: newTodo,
-      completed: newc === "true", // Convert string to boolean
+      completed: false, // Default to pending
     };
     setTodos([newVal, ...todos]);
     setNewTodo("");
   };
-//filetring todo's based on selected value.
+
+  // Mark todo as completed
+  const markAsCompleted = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: true } : todo
+      )
+    );
+  };
+
+  // Filtering todos based on selected value
   const filteredTodos = todos.filter((todo) => {
     if (filter === "completed") return todo.completed;
     if (filter === "pending") return !todo.completed;
@@ -70,34 +76,15 @@ function App() {
 
   return (
     <div className="todo-app">
-
       {/* Add New Task */}
       <div className="add-task-container">
-        
         <input
-          type="text" className="addnew"
+          type="text"
+          className="addnew"
           placeholder="Add New Task"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <label className="radio">
-          Completed
-        </label>
-        <input
-            type="radio"
-            name="completed"
-            value="true"
-            onChange={(e) => setNewc(e.target.value)}
-          />
-        <label className="radio">
-          Pending
-        </label>
-        <input
-            type="radio"
-            name="completed"
-            value="false"
-            onChange={(e) => setNewc(e.target.value)}
-          />
         <button onClick={addTodo}>Add</button>
       </div>
 
@@ -119,8 +106,15 @@ function App() {
       <ul className="todo-list">
         {sdata.map((todo) => (
           <li key={todo.id} className={todo.completed ? "completed" : "pending"}>
-            {todo.title} 
-            <button onClick={() => deleteTodo(todo.id)}> Delete </button>
+            {todo.title}
+            <div>
+              {!todo.completed && (
+                <button  className="complete" onClick={() => markAsCompleted(todo.id)}>
+                  Complete
+                </button>
+              )}
+              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
