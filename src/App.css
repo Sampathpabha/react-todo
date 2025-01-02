@@ -45,7 +45,7 @@ h1 {
   padding: 10px;
   border-radius: 4px;
   font-size: 14px;
-  width: 22vw;
+  width: 26vw;
   margin-right: 3vw;
   
 }
@@ -98,7 +98,7 @@ h1 {
 .todo-list li {
   padding: 10px 15px;
   margin: 5px auto;
-  width: 45vw;
+  width: 50vw;
   border: 1px solid #ddd;
   border-radius: 4px;
   text-align: left;
