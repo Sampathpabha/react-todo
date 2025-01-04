@@ -4,23 +4,34 @@ import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    // Load initial data from localStorage
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
   const [filter, setFilter] = useState("all");
   const [fIndex, setFIndex] = useState(0);
   const [lIndex, setLIndex] = useState(10);
   const [newTodo, setNewTodo] = useState("");
   const [progressValue, setProgressValue] = useState(0);
 
-  // Fetch todos on component mount
+  // Save todos to localStorage whenever they change
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => {
-        setTodos(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching todos:", error);
-      });
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // Fetch todos on component mount if localStorage is empty
+  useEffect(() => {
+    if (todos.length === 0) {
+      axios
+        .get("https://jsonplaceholder.typicode.com/todos")
+        .then((response) => {
+          setTodos(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching todos:", error);
+        });
+    }
   }, []);
 
   // Reset first and last index when filter value changes
@@ -46,7 +57,10 @@ function App() {
 
   // Adding new todo
   const addTodo = () => {
-    if (newTodo.trim() === "") return;
+    if (newTodo.trim() === "") {
+      alert("Enter a valid task");
+      return;
+    }
     const newVal = {
       id: uuidv4(),
       title: newTodo,
@@ -109,7 +123,10 @@ function App() {
             {todo.title}
             <div>
               {!todo.completed && (
-                <button  className="complete" onClick={() => markAsCompleted(todo.id)}>
+                <button
+                  className="complete"
+                  onClick={() => markAsCompleted(todo.id)}
+                >
                   Complete
                 </button>
               )}
@@ -142,7 +159,7 @@ function App() {
             }
           }}
         >
-          Next
+        Next
         </button>
       </div>
     </div>
